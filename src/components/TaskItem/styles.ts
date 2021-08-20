@@ -9,6 +9,7 @@ export const Container = styled.div<ContainerProps>`
   padding: 0.5rem 1rem;
   margin: 0.5rem;
   align-items: center;
+  cursor: pointer;
 
   svg {
     opacity: 0;
@@ -52,7 +53,7 @@ export const Container = styled.div<ContainerProps>`
   .check-icon {
     width: 20px;
     height: 20px;
-    color: green;
+    /* color: green; */
 
     @media (min-width: 768px) {
       width: 30px;
@@ -111,7 +112,8 @@ export const ModalContainer = styled.div`
   padding: 1rem;
   background-color: white;
   border-radius: 15px;
-  border: 1px solid red;
+  border: 1px solid orange;
+  outline: none;
 `;
 
 export const ButtonContainer = styled.div`

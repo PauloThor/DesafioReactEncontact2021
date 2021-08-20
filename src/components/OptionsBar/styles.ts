@@ -38,6 +38,9 @@ interface OptionLabelProps {
 }
 
 export const OptionLabel = styled.label<OptionLabelProps>`
-  border: ${(props) => (props.isFocused ? "1px solid red" : "none")};
+  border: ${(props) => (props.isFocused ? "1px solid orange" : "none")};
   cursor: pointer;
+  border-radius: 5px;
+  box-shadow: ${(props) =>
+    props.isFocused ? "rgba(0, 0, 0, 0.35) 0px 5px 15px" : "none"};
 `;

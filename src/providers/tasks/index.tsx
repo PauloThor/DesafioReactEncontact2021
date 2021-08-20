@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from "react";
+import React, { useState } from "react";
 import { createContext, ReactNode, useContext, useEffect } from "react";
 import { Options } from "../../models/enums/options";
 import api from "../../services/api";
@@ -8,7 +8,7 @@ interface TaskProviderProps {
   children: ReactNode;
 }
 
-const { ALL, ACTIVE, COMPLETED } = Options;
+const { ALL } = Options;
 
 interface TaskProviderData {
   tasks: Task[];
@@ -26,7 +26,6 @@ const TaskContext = createContext<TaskProviderData>({} as TaskProviderData);
 
 export const TaskProvider = ({ children }: TaskProviderProps) => {
   const [tasks, setTasks] = useState<Task[]>([]);
-  // const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
   const [filterCategory, setFilterCategory] = useState<string>(ALL);
 
   useEffect(() => {
@@ -36,12 +35,9 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
   }, []);
 
   const handleAddTask = (task: string) => {
-    const newTask = {
-      title: task,
-      id: `${task}-${tasks.length}`,
-      isDone: false,
-    };
-    setTasks([newTask, ...tasks]);
+    api.post("/todos", { title: task, isDone: false }).then((res) => {
+      setTasks([res.data, ...tasks]);
+    });
   };
 
   const handleRemoveTask = (id: string) => {

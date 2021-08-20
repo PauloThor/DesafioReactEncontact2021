@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const StyledInput = styled.input`
   padding: 0.5rem 1rem;
-  border: 1px solid red;
+  border: 1px solid orange;
   outline: none;
   border-radius: 10px;
   width: 200px;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DraggableContainer from "./components/DraggableContainer";
 import OptionsBar from "./components/OptionsBar";
 import TaskInput from "./components/TaskInput";
 import TaskItem from "./components/TaskItem";
@@ -38,9 +39,11 @@ export default function App() {
         <h1>Todos</h1>
         <section>
           <TaskInput />
-          {getTasksByFilter().map((task) => (
-            <TaskItem title={task.title} id={task.id} isDone={task.isDone} />
-          ))}
+          <DraggableContainer
+            list={getTasksByFilter().map((task) => (
+              <TaskItem title={task.title} id={task.id} isDone={task.isDone} />
+            ))}
+          />
           <OptionsBar />
         </section>
         <button onClick={toggleTheme}>Teste</button>

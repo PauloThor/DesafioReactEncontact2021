@@ -21,7 +21,11 @@ const TaskInput = () => {
 
   return (
     <Container>
-      <IoIosArrowDown size={20} onClick={handleCompleteAll} />
+      <IoIosArrowDown
+        size={20}
+        onClick={handleCompleteAll}
+        className="arrow-icon"
+      />
       <StyledInput
         value={taskValue}
         onChange={(e) => setTaskValue(e.target.value)}
