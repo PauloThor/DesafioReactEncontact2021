@@ -9,6 +9,10 @@ const TaskInput = () => {
   const { handleAddTask, handleCompleteAll } = useTask();
 
   const submitTask = (event: any) => {
+    if (!taskValue) {
+      return;
+    }
+
     if (event.key === "Enter") {
       handleAddTask(taskValue);
       setTaskValue("");

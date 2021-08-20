@@ -14,6 +14,7 @@ interface TaskProviderData {
   toggleIsDoneTask: (id: string) => void;
   handleCompleteAll: () => void;
   handleDeleteCompleted: () => void;
+  handleUpdateTask: (id: string, title: string) => void;
 }
 
 const TaskContext = createContext<TaskProviderData>({} as TaskProviderData);
@@ -31,7 +32,6 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
       id: `${task}-${tasks.length}`,
       isDone: false,
     };
-
     setTasks([newTask, ...tasks]);
   };
 
@@ -77,6 +77,18 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
     setTasks(updatedTasks);
   };
 
+  const handleUpdateTask = (id: string, title: string) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, title: title };
+      }
+
+      return task;
+    });
+
+    setTasks(updatedTasks);
+  };
+
   return (
     <TaskContext.Provider
       value={{
@@ -86,6 +98,7 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
         toggleIsDoneTask,
         handleCompleteAll,
         handleDeleteCompleted,
+        handleUpdateTask,
       }}
     >
       {children}

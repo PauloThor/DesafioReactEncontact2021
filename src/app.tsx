@@ -14,6 +14,7 @@ export default function App() {
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
+    console.log(tasks);
   };
 
   return (
@@ -24,7 +25,7 @@ export default function App() {
         <h1>Todos</h1>
         <TaskInput />
         {tasks.map((task) => (
-          <TaskItem task={task} />
+          <TaskItem title={task.title} id={task.id} isDone={task.isDone} />
         ))}
         <OptionsBar />
         <button onClick={toggleTheme}>Teste</button>

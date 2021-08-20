@@ -1,4 +1,3 @@
-import { Task } from "../../types/task";
 import { useTask } from "../../providers/tasks";
 import { useState } from "react";
 import Modal from "@material-ui/core/Modal";
@@ -9,21 +8,21 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsCircle } from "react-icons/bs";
 
 import * as S from "./styles";
+import { useEffect } from "react";
 
 interface TaskItemProps {
-  task: Task;
+  title: string;
+  id: string;
+  isDone: boolean;
 }
 
-const TaskItem = ({ task }: TaskItemProps) => {
+const TaskItem = ({ title, id, isDone }: TaskItemProps) => {
   const [isInEdit, setIsInEdit] = useState<boolean>(false);
-  const [title, setTitle] = useState<string>(task.title);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const { id, isDone } = task;
+  const [editValue, setEditValue] = useState<string>("");
 
-  const [editValue, setEditValue] = useState<string>(task.title);
-
-  const { toggleIsDoneTask, handleRemoveTask } = useTask();
+  const { toggleIsDoneTask, handleRemoveTask, handleUpdateTask } = useTask();
 
   const handleToggleIsInEdit = () => {
     setIsInEdit(!isInEdit);
@@ -31,7 +30,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
 
   const handleEdit = (event: any) => {
     if (event.key === "Enter") {
-      setTitle(editValue);
+      handleUpdateTask(id, editValue);
       handleToggleIsInEdit();
       return;
     }
@@ -50,6 +49,10 @@ const TaskItem = ({ task }: TaskItemProps) => {
     handleRemoveTask(id);
     handleToggleModal();
   };
+
+  useEffect(() => {
+    setEditValue(title);
+  }, [title]);
 
   return (
     <>
