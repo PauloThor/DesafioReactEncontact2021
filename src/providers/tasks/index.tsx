@@ -1,5 +1,6 @@
-import { useState } from "react";
+import React, { Dispatch, useState } from "react";
 import { createContext, ReactNode, useContext, useEffect } from "react";
+import { Options } from "../../models/enums/options";
 import api from "../../services/api";
 import { Task } from "../../types/task";
 
@@ -7,23 +8,31 @@ interface TaskProviderProps {
   children: ReactNode;
 }
 
+const { ALL, ACTIVE, COMPLETED } = Options;
+
 interface TaskProviderData {
   tasks: Task[];
+  filterCategory: string;
   handleAddTask: (task: string) => void;
   handleRemoveTask: (id: string) => void;
   toggleIsDoneTask: (id: string) => void;
   handleCompleteAll: () => void;
   handleDeleteCompleted: () => void;
   handleUpdateTask: (id: string, title: string) => void;
+  setFilterCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const TaskContext = createContext<TaskProviderData>({} as TaskProviderData);
 
 export const TaskProvider = ({ children }: TaskProviderProps) => {
   const [tasks, setTasks] = useState<Task[]>([]);
+  // const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
+  const [filterCategory, setFilterCategory] = useState<string>(ALL);
 
   useEffect(() => {
-    api.get("/todos").then((res) => setTasks(res.data));
+    api.get("/todos").then((res) => {
+      setTasks(res.data);
+    });
   }, []);
 
   const handleAddTask = (task: string) => {
@@ -93,12 +102,14 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
     <TaskContext.Provider
       value={{
         tasks,
+        filterCategory,
         handleAddTask,
         handleRemoveTask,
         toggleIsDoneTask,
         handleCompleteAll,
         handleDeleteCompleted,
         handleUpdateTask,
+        setFilterCategory,
       }}
     >
       {children}

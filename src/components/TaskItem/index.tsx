@@ -64,18 +64,18 @@ const TaskItem = ({ title, id, isDone }: TaskItemProps) => {
                 size={20}
                 onClick={() => toggleIsDoneTask(id)}
                 style={{ opacity: "1" }}
+                className="uncheck-icon"
               />
             ) : (
               <AiOutlineCheckCircle
-                size={20}
                 onClick={() => toggleIsDoneTask(id)}
-                style={{ color: "green" }}
+                className="check-icon"
               />
             )}
             <S.Title className={"text"} onDoubleClick={handleToggleIsInEdit}>
               {title}
             </S.Title>
-            <FcCancel size={20} onClick={handleToggleModal} />
+            <FcCancel onClick={handleToggleModal} className="cancel-icon" />
           </>
         ) : (
           <S.TitleEdit

@@ -17,4 +17,8 @@ export const StyledInput = styled.input`
   width: 200px;
   margin-left: 10px;
   font-size: 14px;
+
+  @media (min-width: 768px) {
+    width: 500px;
+  }
 `;

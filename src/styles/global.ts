@@ -14,6 +14,20 @@ body {
     props.theme === "light" ? "white" : "#181A1B"}
 }
 
+section {
+  max-width: 300px;
+  margin: 0 auto;
+  font-size: 0.8rem;
+  background-color: gray;
+  padding: 10px;
+  border-radius: 5px;
+
+  @media (min-width: 768px) {
+    max-width: 500px;
+    font-size: 1.1rem;
+  }
+}
+
 :root{
   --alt-font: 'Poppins', sans-serif; 
   --dark-green: #0D2818;

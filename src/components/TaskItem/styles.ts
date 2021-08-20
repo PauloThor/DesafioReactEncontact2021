@@ -36,6 +36,39 @@ export const Container = styled.div<ContainerProps>`
     text-decoration: ${(props) => (props.isDone ? "line-through" : "none")};
     opacity: ${(props) => (props.isDone ? "0.5" : "1")};
   }
+
+  .cancel-icon {
+    opacity: 1;
+    width: 20px;
+    height: 20px;
+
+    @media (min-width: 768px) {
+      opacity: 0;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    color: green;
+
+    @media (min-width: 768px) {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .uncheck-icon {
+    width: 20px;
+    height: 20px;
+
+    @media (min-width: 768px) {
+      width: 30px;
+      height: 30px;
+    }
+  }
 `;
 
 export const Title = styled.p`
@@ -47,6 +80,10 @@ export const Title = styled.p`
   align-items: center;
   justify-content: center;
   margin: 0;
+
+  @media (min-width: 768px) {
+    width: 500px;
+  }
 `;
 
 export const TitleEdit = styled.input`
@@ -60,6 +97,10 @@ export const TitleEdit = styled.input`
   align-items: center;
   border: 1px solid gray;
   outline: none;
+
+  @media (min-width: 768px) {
+    width: 500px;
+  }
 `;
 
 export const ModalContainer = styled.div`
