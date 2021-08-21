@@ -73,7 +73,6 @@ function DraggableContainer({ list }: any) {
       result.source.index,
       result.destination.index
     );
-    console.log(state);
     setState({ quotes });
   }
 

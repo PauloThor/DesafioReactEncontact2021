@@ -33,6 +33,7 @@ section {
 
 h1 {
   color: ${(props) => (props.theme === "light" ? "#f40909" : "#f7d036")};
+  font-size: 2.7rem;
 }
 
 input {
@@ -42,13 +43,7 @@ input {
 }
 
 :root{
-  --alt-font: 'Poppins', sans-serif; 
-  --dark-green: #0D2818;
-  --green: #14AF5A;
-  --light-green: #16DB65;
-  --lighter-green: #A9FDAC;
-  --gray: #605F5F;
-  --black: #1C1B1B;
+  --alt-font: 'Poppins', sans-serif
 }
 
 .text {
@@ -79,6 +74,11 @@ label {
     width: 30px;
     height: 30px;
   }
+}
+
+.theme-container {
+  cursor: pointer;
+  padding: 1rem;
 }
 `;
 

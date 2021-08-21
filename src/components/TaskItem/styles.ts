@@ -114,6 +114,11 @@ export const ModalContainer = styled.div`
   border-radius: 15px;
   border: 1px solid orange;
   outline: none;
+  color: darkorange;
+
+  @media (min-width: 769px) {
+    font-size: 1.4rem;
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -123,7 +128,7 @@ export const ButtonContainer = styled.div`
   margin: 0 auto;
 
   .confirm_button {
-    border-color: red;
+    border-color: orange;
   }
 
   .cancel_button {

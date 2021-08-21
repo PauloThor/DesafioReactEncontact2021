@@ -6,6 +6,7 @@ import TaskItem from "./components/TaskItem";
 import { Options } from "./models/enums/options";
 import { useTask } from "./providers/tasks";
 import GlobalStyle from "./styles/global";
+import { BsSun, BsMoon } from "react-icons/bs";
 
 const { ALL, ACTIVE } = Options;
 
@@ -17,7 +18,6 @@ export default function App() {
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    console.log(tasks);
   };
 
   const getTasksByFilter = () => {
@@ -37,6 +37,13 @@ export default function App() {
       <GlobalStyle theme={theme} />
       <main>
         <h1>Todos</h1>
+        <div onClick={toggleTheme} className="theme-container">
+          {theme === "light" ? (
+            <BsSun color="yellow" size={30} />
+          ) : (
+            <BsMoon color="darkblue" size={30} />
+          )}
+        </div>
         <section>
           <TaskInput />
           <DraggableContainer
@@ -46,7 +53,6 @@ export default function App() {
           />
           <OptionsBar />
         </section>
-        <button onClick={toggleTheme}>Teste</button>
       </main>
     </>
   );
